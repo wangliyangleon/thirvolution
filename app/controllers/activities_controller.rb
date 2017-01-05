@@ -13,6 +13,10 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
 
+  def index
+    @activities = Activity.all
+  end
+
   private
     def activity_params
       params.required(:activity).permit(:title)
