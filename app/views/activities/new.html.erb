@@ -1,0 +1,12 @@
+<h1>Create Thirvoluty Activity and start TODAY!!!</h1>
+
+<%= form_for :activity, url: activities_path do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
