@@ -7,8 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the db config
+# Ignore the cridential config
 /config/database.yml
+/config/environments/development.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*
