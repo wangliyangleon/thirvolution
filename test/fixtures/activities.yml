@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  participate_count: 1
+  finish_count: 1
+  finish_day_count: 1
+
+two:
+  title: MyString
+  participate_count: 1
+  finish_count: 1
+  finish_day_count: 1
