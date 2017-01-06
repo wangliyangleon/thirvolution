@@ -2,7 +2,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: **myapp_development**
+  database: thirvolutiondb_dev
   pool: 5
   username: **root**
   password: **supersecretpassword**
@@ -11,7 +11,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: **myapp_test**
+  database: thirvolutiondb_test
   pool: 5
   username: **root**
   password: **supersecretpassword**
@@ -20,7 +20,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: **myapp_production**
+  database: thirvolutiondb_prod
   pool: 5
   username: **root**
   password: **supersecretpassword**
