@@ -5,10 +5,11 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = Activity.new(activity_params)
-
-    @activity.save
-    redirect_to @activity
+    @activity = current_user.activities.create(activity_params)
+    if @activity.save
+      flash[:success] = "Activity created!"
+      redirect_to @activity
+    end
   end
 
   def show

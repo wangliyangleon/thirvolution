@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :confirmable, :lockable, :omniauthable,
          :omniauth_providers => [:google_oauth2]
 
+  has_many :activity_participations
+  has_many :activities, through: :activity_participations
+
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
