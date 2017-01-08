@@ -18,10 +18,15 @@ class User < ApplicationRecord
     user = User.where(:email => data["email"]).first
 
     unless user
+      username = data["name"].tr('^a-zA-Z0-9_\.', '')
+      if username.length == 0
+        # TODO: handle the bad luck case :(
+        username = "user%d" % rand(99999999)
+      end
       user = User.create(
         provider: access_token.provider,
         uid: access_token.uid,
-        username: data["name"],
+        username: username,
         email: data["email"],
         password: Devise.friendly_token[0,20]
       )
@@ -44,12 +49,6 @@ class User < ApplicationRecord
       :case_sensitive => false
     }
 
-  validate :validate_username
-  def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
-    end
-  end
-
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
 end
