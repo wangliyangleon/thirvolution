@@ -5,15 +5,20 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = current_user.activities.create(activity_params)
-    @activity.save
-    redirect_to @activity
+    if !get_current_participation
+      @activity = current_user.activities.create(activity_params)
+      @activity.save
+      redirect_to @activity
+    else
+      flash[:alert] =  "You cannot participate multiple activities"
+      redirect_to activities_url
+    end
   end
 
   def show
     @activity = Activity.find(params[:id])
     @participation_count = @activity.activity_participations.count
-    @participation = current_user.activity_participations.where(:activity => @activity).first
+    @current_participation = get_current_participation
   end
 
   def index
@@ -22,14 +27,22 @@ class ActivitiesController < ApplicationController
 
   def participate
     @activity = Activity.find(params[:id])
-    @participation = ActivityParticipation.new(
-      :activity => @activity, :user => current_user)
-    @participation.save
+    if !get_current_participation
+      @participation = ActivityParticipation.new(
+        :activity => @activity, :user => current_user)
+      @participation.save
+    else
+      flash[:alert] =  "You cannot participate multiple activities"
+    end
     redirect_to @activity
   end
 
   private
     def activity_params
       params.required(:activity).permit(:title)
+    end
+
+    def get_current_participation
+      current_user.activity_participations.where(["created_at >= ?", 30.days.ago]).first
     end
 end
