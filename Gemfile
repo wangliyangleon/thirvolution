@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Use bootstrap as the frontend framework
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -52,5 +55,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'devise' 
-gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'devise'
+gem 'omniauth-google-oauth2', "~> 0.2.1"
