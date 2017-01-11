@@ -1,3 +1,6 @@
 <h1>Hello, Day 1!</h1>
+<% if user_signed_in? %>
+  <p>Ready to start a self revolution, <strong><%= current_user.username %></strong>?</p>
+<% end %>
 <p>How about just pick an <%= link_to 'activity', controller: 'activities' %>?</p>
 <p>Or create a <%= link_to 'new one', new_activity_path %></p>
