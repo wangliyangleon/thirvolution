@@ -7,7 +7,7 @@
       <footer><%= current_user.username %>, one of the greatest Thirvolutionists</footer>
     </blockquote>
     <% if @finished_today %>
-      <p class="lead bg-success"><strong>Great! You have finished today's Thirvolution!</strong></p>
+      <p class="lead">Great! You have finished today's Thirvolution!</p>
     <% else %>
       <%= button_to('I Finished today\'s Thirvolution ;-)', finish_activity_path(@current_activity.id), :class => 'btn btn-success btn-lg')  %>
     <% end %>
@@ -17,7 +17,7 @@
       <p>So, this is how I start my self revolution!</p>
       <footer><%= current_user.username %>, one of the most prospective Thirvolutionists</footer>
     </blockquote>
-    <p class="lead">How about just pick an <%= link_to 'Thirvolution', controller: 'activities' %>?</p>
+    <p class="lead">How about just pick an <%= link_to 'activity', controller: 'activities' %>?</p>
     <p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
   <% end %>
 <% else %>
