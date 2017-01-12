@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   # get 'signout', to: 'sessions#destroy', as: 'signout'
 
   # resources :sessions, only: [:create, :destroy]
-  resources :activities do
+  resources :activities, only: [:index, :show, :new] do
     patch :participate, on: :member
+    post :finish, on: :member
   end
   resources :welcome, only: [:index]
 

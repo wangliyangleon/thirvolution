@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108123628) do
+ActiveRecord::Schema.define(version: 20170112131233) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                         null: false
@@ -29,6 +29,26 @@ ActiveRecord::Schema.define(version: 20170108123628) do
     t.index ["activity_id"], name: "index_activity_participations_on_activity_id", using: :btree
     t.index ["user_id", "activity_id"], name: "index_activity_participations_on_user_id_and_activity_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_activity_participations_on_user_id", using: :btree
+  end
+
+  create_table "daily_finishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["activity_id"], name: "index_daily_finishes_on_activity_id", using: :btree
+    t.index ["user_id", "activity_id"], name: "index_daily_finishes_on_user_id_and_activity_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_daily_finishes_on_user_id", using: :btree
+  end
+
+  create_table "monthly_finishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["activity_id"], name: "index_monthly_finishes_on_activity_id", using: :btree
+    t.index ["user_id", "activity_id"], name: "index_monthly_finishes_on_user_id_and_activity_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_monthly_finishes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

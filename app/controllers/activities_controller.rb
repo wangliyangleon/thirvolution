@@ -7,10 +7,15 @@ class ActivitiesController < ApplicationController
   def create
     if !get_current_participation
       @activity = current_user.activities.create(activity_params)
-      @activity.save
-      redirect_to @activity
+      begin
+        @activity.save
+        redirect_to @activity
+      rescue
+        flash[:alert] = "Unknown error :-("
+        redirect_to(:back)
+      end
     else
-      flash[:alert] =  "You cannot participate multiple activities"
+      flash[:alert] = "You cannot participate multiple activities"
       redirect_to activities_url
     end
   end
@@ -30,19 +35,42 @@ class ActivitiesController < ApplicationController
     if !get_current_participation
       @participation = ActivityParticipation.new(
         :activity => @activity, :user => current_user)
-      @participation.save
+      begin
+        @participation.save
+        flash[:success] = "Cool! Let's start Thirvolution TODAY!!!"
+      rescue
+        flash[:alert] = "Unknown error :-("
+      end
     else
       flash[:alert] =  "You cannot participate multiple activities"
     end
-    redirect_to @activity
+    redirect_to(:back)
+  end
+
+  def finish
+    @activity = Activity.find(params[:id])
+    if get_current_participation
+      @daily_finish = DailyFinish.new(
+        :activity => @activity, :user => current_user)
+      begin
+        @daily_finish.save
+        flash[:success] = "Cool! Let's continue tomorrow!!!"
+      rescue
+        flash[:alert] = "Unknown error :-("
+      end
+    else
+      flash[:alert] =  "Please join an activity first"
+    end
+    redirect_to(:back)
   end
 
   private
-    def activity_params
-      params.required(:activity).permit(:title)
-    end
+  def activity_params
+    params.required(:activity).permit(:title)
+  end
 
-    def get_current_participation
-      current_user.activity_participations.where(["created_at >= ?", 30.days.ago]).first
-    end
+  private
+  def get_current_participation
+    current_user.activity_participations.where(["created_at >= ?", 30.days.ago]).first
+  end
 end

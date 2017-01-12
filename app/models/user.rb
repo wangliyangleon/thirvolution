@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   has_many :activity_participations
   has_many :activities, through: :activity_participations
+  has_many :daily_finishes
+  has_many :activities, through: :daily_finishes
+  has_many :monthly_finishes
+  has_many :activities, through: :monthly_finishes
 
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
