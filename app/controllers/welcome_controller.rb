@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
 
   private
   def get_current_participation
-    current_user.activity_participations.where(["created_at >= ?", 30.days.ago.beginning_of_day]).first
+    current_user.activity_participations.where(["created_at >= ?", 29.days.ago.beginning_of_day]).first
   end
 
   def is_finished_today

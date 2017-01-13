@@ -13,7 +13,7 @@ class ActivitiesController < ApplicationController
         redirect_to @activity
       rescue
         flash[:alert] = "Unknown error :-("
-        redirect_to(:back)
+        redirect_back(fallback_location: root_path)
       end
     else
       flash[:alert] = "You cannot participate multiple activities"
@@ -33,14 +33,10 @@ class ActivitiesController < ApplicationController
   def participate
     @activity = Activity.find(params[:id])
     if !get_current_participation
-      @participation = ActivityParticipation.new(
-        :activity => @activity, :user => current_user)
+      @activity.activity_participations.create(:user => current_user)
       @activity.increment(:participate_count, by = 1)
       begin
-        Activity.transaction do
-          @participation.save
-          @activity.save
-        end
+        @activity.save
         flash[:success] = "Cool! Let's start Thirvolution TODAY!!!"
       rescue
         flash[:alert] = "Unknown error :-("
@@ -48,29 +44,48 @@ class ActivitiesController < ApplicationController
     else
       flash[:alert] =  "You cannot participate multiple activities"
     end
-    redirect_to(:back)
+    redirect_back(fallback_location: root_path)
   end
 
   def finish
+    # TODO: Think about a better association for finishes
     @activity = Activity.find(params[:id])
-    if get_current_participation
-      @daily_finish = DailyFinish.new(
-        :activity => @activity, :user => current_user, :finish_date => Time.zone.now.to_date)
-      @activity.increment(:finish_day_count, by = 1)
-      # TODO: Check monthly finish
+    @participation = get_current_participation
+    if @participation
       begin
-        Activity.transaction do
-          @daily_finish.save
+        @activity.daily_finishes.create(:user => current_user)
+        @activity.increment(:finish_day_count, by = 1)
+        @day_count = (Time.zone.now - @participation.created_at.beginning_of_day).to_i / 1.day + 1
+        @is_last_day = (@day_count == 30)
+        if @is_last_day
+          @finish_day_count = @activity.daily_finishes(:user => current_user)
+              .where(["finish_date > ?", 30.days.ago.to_date]).count
+          @is_monthly_finished = (@finish_day_count == 30)
+          if @is_monthly_finished
+            @activity.monthly_finishes.create(:user => current_user)
+            @activity.increment(:finish_count, by = 1)
+          end
+          #@activity.activity_participations.destroy(@participation.id)
+          @activity.transaction do
+            @participation.destroy
+            @activity.save
+          end
+          if @is_monthly_finished
+            flash[:success] = "Great! You just finished a Thirvolution with #%s!!!" % [@activity.title]
+          else
+            flash[:success] = "Great! You finished #%s with %d/30! You can do better!!!" % [@activity.title, @finish_day_count]
+          end
+        else
           @activity.save
+          flash[:success] = "Cool! Let's continue tomorrow!!!"
         end
-        flash[:success] = "Cool! Let's continue tomorrow!!!"
       rescue
         flash[:alert] = "Unknown error :-("
       end
     else
       flash[:alert] =  "Please join an activity first"
     end
-    redirect_to(:back)
+    redirect_back(fallback_location: root_path)
   end
 
   private
@@ -80,6 +95,6 @@ class ActivitiesController < ApplicationController
 
   private
   def get_current_participation
-    current_user.activity_participations.where(["created_at >= ?", 30.days.ago]).first
+    current_user.activity_participations.where(["created_at >= ?", 29.days.ago.beginning_of_day]).first
   end
 end
