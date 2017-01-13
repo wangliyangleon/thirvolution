@@ -1,27 +1,33 @@
-<% if user_signed_in? %>
-  <% if @current_participation %>
-    <h1>Hello, Day <%= @day_count %></h1>
-    <h2> -- with #<%= @current_activity.title %>!</h2>
-    <blockquote>
-      <p>I'm ready to continue my self revolution!</p>
-      <footer><%= current_user.username %>, one of the greatest Thirvolutionists</footer>
-    </blockquote>
-    <% if @finished_today %>
-      <p class="lead">Great! You have finished today's Thirvolution!</p>
-    <% else %>
-      <%= button_to('I Finished today\'s Thirvolution ;-)', finish_activity_path(@current_activity.id), :class => 'btn btn-success btn-lg')  %>
-    <% end %>
-  <% else %>
-    <h1>Hello, Day 0! </h1>
-    <blockquote>
-      <p>So, this is how I start my self revolution!</p>
-      <footer><%= current_user.username %>, one of the most prospective Thirvolutionists</footer>
-    </blockquote>
-    <p class="lead">How about just pick an <%= link_to 'activity', controller: 'activities' %>?</p>
-    <p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
-  <% end %>
-<% else %>
-    <h1>Hello, Day 0! </h1>
-    <p>TODO: Show sign up message</p>
+<h1>Hello, Day <%= @day_count %></h1>
+<% if @current_participation %>
+  <h2> -- with #<%= @current_activity.title %>!</h2>
 <% end %>
-<p>TODO: Show activity dashboard</p>
+
+<blockquote>
+  <% if @current_participation %>
+    <p>I'm ready to continue my self revolution!</p>
+    <footer><%= current_user.username %>, one of the greatest Thirvolutionists</footer>
+  <% elsif user_signed_in? %>
+    <p>So, this is how I start my self revolution!</p>
+    <footer><%= current_user.username %>, one of the most prospective Thirvolutionists</footer>
+  <% else %>
+      <p>I'm ready for my very first step to be better!</p>
+      <footer>YOU, pritential Thirvolutionist</footer>
+  <% end %>
+</blockquote>
+
+<% if @current_participation %>
+  <% if @finished_today %>
+    <p class="lead">Great! You have finished today's Thirvolution!</p>
+  <% else %>
+    <%= button_to('I Finished today\'s Thirvolution ;-)', finish_activity_path(@current_activity.id), :class => 'btn btn-success btn-lg')  %>
+  <% end %>
+<% elsif user_signed_in? %>
+  <p class="lead">How about just pick an <%= link_to 'activity', controller: 'activities' %>?</p>
+  <p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
+<% else %>
+  <p class="lead"><%= link_to 'Join us', new_user_registration_path %> now!
+     Or  <%= link_to 'login', new_user_session_path %> with your account.</p>
+<% end %>
+
+<%= render partial: "shared/activity_dashboard" %>

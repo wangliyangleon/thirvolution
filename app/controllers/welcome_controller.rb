@@ -6,6 +6,8 @@ class WelcomeController < ApplicationController
       if @current_participation
         @current_activity = @current_participation.activity
         @day_count = (Time.zone.now - @current_participation.created_at.beginning_of_day).to_i / 1.day + 1
+      else
+        @day_count = 0
       end
     end
   end
