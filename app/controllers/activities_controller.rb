@@ -37,8 +37,10 @@ class ActivitiesController < ApplicationController
         :activity => @activity, :user => current_user)
       @activity.increment(:participate_count, by = 1)
       begin
-        @participation.save
-        @activity.save
+        Activity.transaction do
+          @participation.save
+          @activity.save
+        end
         flash[:success] = "Cool! Let's start Thirvolution TODAY!!!"
       rescue
         flash[:alert] = "Unknown error :-("
@@ -57,8 +59,10 @@ class ActivitiesController < ApplicationController
       @activity.increment(:finish_day_count, by = 1)
       # TODO: Check monthly finish
       begin
-        @daily_finish.save
-        @activity.save
+        Activity.transaction do
+          @daily_finish.save
+          @activity.save
+        end
         flash[:success] = "Cool! Let's continue tomorrow!!!"
       rescue
         flash[:alert] = "Unknown error :-("
