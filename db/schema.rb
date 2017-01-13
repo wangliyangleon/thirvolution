@@ -34,20 +34,22 @@ ActiveRecord::Schema.define(version: 20170112131233) do
   create_table "daily_finishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
+    t.date     "finish_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["activity_id"], name: "index_daily_finishes_on_activity_id", using: :btree
-    t.index ["user_id", "activity_id"], name: "index_daily_finishes_on_user_id_and_activity_id", unique: true, using: :btree
+    t.index ["user_id", "activity_id", "finish_date"], name: "daily_finish_index", unique: true, using: :btree
     t.index ["user_id"], name: "index_daily_finishes_on_user_id", using: :btree
   end
 
   create_table "monthly_finishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
+    t.date     "finish_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["activity_id"], name: "index_monthly_finishes_on_activity_id", using: :btree
-    t.index ["user_id", "activity_id"], name: "index_monthly_finishes_on_user_id_and_activity_id", unique: true, using: :btree
+    t.index ["user_id", "activity_id", "finish_date"], name: "monthly_finish_index", unique: true, using: :btree
     t.index ["user_id"], name: "index_monthly_finishes_on_user_id", using: :btree
   end
 

@@ -51,7 +51,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     if get_current_participation
       @daily_finish = DailyFinish.new(
-        :activity => @activity, :user => current_user)
+        :activity => @activity, :user => current_user, :finish_date => Time.zone.now.to_date)
       begin
         @daily_finish.save
         flash[:success] = "Cool! Let's continue tomorrow!!!"
