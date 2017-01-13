@@ -4,7 +4,6 @@
   <% @activities.each do |activity| %>
     <tr>
       <td><%= link_to activity.title, activity %></td>
-      <td>ID-<%= activity.id %></td>
       <td><%= activity.participate_count %> users participated!</td>
     </tr>
   <% end %>
