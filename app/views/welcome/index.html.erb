@@ -1,10 +1,10 @@
 <h1>Hello, Day <%= @day_count %></h1>
-<% if @current_participation %>
+<% if @is_participated %>
   <h2> -- with #<%= @current_activity.title %>!</h2>
 <% end %>
 
 <blockquote>
-  <% if @current_participation %>
+  <% if @is_participated %>
     <p>I'm ready to continue my self revolution!</p>
     <footer><%= current_user.username %>, one of the greatest Thirvolutionists</footer>
   <% elsif user_signed_in? %>
@@ -16,8 +16,8 @@
   <% end %>
 </blockquote>
 
-<% if @current_participation %>
-  <% if @finished_today %>
+<% if @is_participated %>
+  <% if @is_finished_today %>
     <p class="lead">Great! You have finished today's Thirvolution!</p>
   <% else %>
     <%= button_to('I Finished today\'s Thirvolution ;-)', finish_activity_path(@current_activity.id), :class => 'btn btn-success btn-lg')  %>

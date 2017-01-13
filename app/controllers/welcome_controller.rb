@@ -1,23 +1,14 @@
 class WelcomeController < ApplicationController
   def index
+    @day_count = 0
     if current_user
-      @current_participation = get_current_participation
-      @finished_today = is_finished_today
-      if @current_participation
-        @current_activity = @current_participation.activity
-        @day_count = (Time.zone.now - @current_participation.created_at.beginning_of_day).to_i / 1.day + 1
-      else
-        @day_count = 0
+      @is_participated = !(current_user.activity_id.nil? || current_user.participate_date.nil?)
+      if @is_participated
+        @current_activity = Activity.find(current_user.activity_id)
+        @is_finished_today = (!current_user.last_finish_date.nil?) &&
+            (current_user.last_finish_date == Time.zone.now.to_date)
+        @day_count = (Time.zone.now.to_date - current_user.participate_date).to_i + 1
       end
     end
-  end
-
-  private
-  def get_current_participation
-    current_user.activity_participations.where(["created_at >= ?", 29.days.ago.beginning_of_day]).first
-  end
-
-  def is_finished_today
-    current_user.daily_finishes.where(["created_at >= ?", Time.zone.now.beginning_of_day]).first
   end
 end

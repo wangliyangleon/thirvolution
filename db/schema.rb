@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112131233) do
+ActiveRecord::Schema.define(version: 20170113141045) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                         null: false
@@ -21,36 +21,14 @@ ActiveRecord::Schema.define(version: 20170112131233) do
     t.datetime "updated_at",                    null: false
   end
 
-  create_table "activity_participations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "participate_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["activity_id"], name: "index_activity_participations_on_activity_id", using: :btree
-    t.index ["user_id", "activity_id"], name: "index_activity_participations_on_user_id_and_activity_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_activity_participations_on_user_id", using: :btree
-  end
-
-  create_table "daily_finishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "activity_id"
-    t.date     "finish_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["activity_id"], name: "index_daily_finishes_on_activity_id", using: :btree
-    t.index ["user_id", "activity_id", "finish_date"], name: "daily_finish_index", unique: true, using: :btree
-    t.index ["user_id"], name: "index_daily_finishes_on_user_id", using: :btree
-  end
-
-  create_table "monthly_finishes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "activity_id"
-    t.date     "finish_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["activity_id"], name: "index_monthly_finishes_on_activity_id", using: :btree
-    t.index ["user_id", "activity_id", "finish_date"], name: "monthly_finish_index", unique: true, using: :btree
-    t.index ["user_id"], name: "index_monthly_finishes_on_user_id", using: :btree
+    t.integer  "finish_day_count", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["activity_id"], name: "index_participate_records_on_activity_id", using: :btree
+    t.index ["user_id"], name: "index_participate_records_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -75,7 +53,14 @@ ActiveRecord::Schema.define(version: 20170112131233) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "username"
+    t.integer  "ongoing_activity_id"
+    t.string   "username",                            null: false
+    t.integer  "activity_id"
+    t.integer  "finish_day_count",       default: 0,  null: false
+    t.integer  "combo_day_count",        default: 0,  null: false
+    t.date     "participate_date"
+    t.date     "last_finish_date"
+    t.index ["activity_id"], name: "index_users_on_activity_id", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -83,4 +68,5 @@ ActiveRecord::Schema.define(version: 20170112131233) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "users", "activities"
 end

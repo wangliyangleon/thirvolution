@@ -7,11 +7,11 @@
   There are <strong><%= @activity.participate_count %></strong> users participated this activity
 </p>
 
-<% if @current_participation and @current_participation.activity == @activity %>
+<% if current_user.activity_id == @activity.id %>
     <p>
-      You have participated in this activity at <strong><%= @current_participation.created_at %></strong>
+      You participated in this activity on <strong><%= current_user.participate_date %></strong>
     </p>
-<% elsif !@current_participation %>
+<% elsif @not_participated %>
   <%= form_for(@activity, url: participate_activity_path) do |f| %>
     <%= f.submit "Participate this activity NOW!" %>
   <% end %>
