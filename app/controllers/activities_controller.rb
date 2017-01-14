@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    if not_participated
+    if not_participated(current_user)
       @activity = Activity.new(activity_params)
       @activity.participate_count = 1
       current_user.participate_date = Time.zone.now.to_date
@@ -28,7 +28,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @not_participated = not_participated
+    @not_participated = not_participated(current_user)
     @activity = Activity.find(params[:id])
   end
 
@@ -38,7 +38,7 @@ class ActivitiesController < ApplicationController
 
   def participate
     @current_activity = Activity.find(params[:id])
-    if not_participated
+    if not_participated(current_user)
       current_user.activity_id = @current_activity.id
       current_user.participate_date = Time.zone.now.to_date
       @current_activity.increment(:participate_count, by = 1)
@@ -59,7 +59,9 @@ class ActivitiesController < ApplicationController
 
   def finish
     @current_activity = Activity.find(params[:id])
-    if is_participated
+    @participated = is_participated(current_user)
+    @finished = is_finished_today(current_user)
+    if @participated && !@finished
       begin
         @current_activity.increment(:finish_day_count, by = 1)
         current_user.increment(:finish_day_count, by = 1)
@@ -72,7 +74,7 @@ class ActivitiesController < ApplicationController
         current_user.last_finish_date = Time.zone.now.to_date
 
         @finish_day_count = current_user.finish_day_count
-        @day_count = (Time.zone.now.to_date - current_user.participate_date).to_i + 1
+        @day_count = participate_day_count(current_user)
         if @day_count >= 30
           @is_monthly_finished = (current_user.combo_day_count >= 30)
           if @is_monthly_finished
@@ -81,16 +83,12 @@ class ActivitiesController < ApplicationController
           @current_activity.transaction do
             @current_activity.participate_records.create(:user => current_user,
                 :finish_day_count => current_user.finish_day_count)
-            current_user.activity_id = nil
-            current_user.participate_date = nil
-            current_user.last_finish_date = nil
-            current_user.finish_day_count = 0
-            current_user.combo_day_count = 0
+            clear_participation(current_user)
             @current_activity.save
             current_user.save
           end
           if @is_monthly_finished
-            flash[:success] = "Great! You just finished a Thirvolution with #%s!!!" \
+            flash[:success] = "Great! You just finished a perfect round of Thirvolution with #%s!!!" \
                 % [@current_activity.title]
           else
             flash[:success] = "Great! You finished #%s with %d/%d! You can do better!!!" \
@@ -106,6 +104,8 @@ class ActivitiesController < ApplicationController
       rescue
         flash[:alert] = "Unknown error :-("
       end
+    elsif @finished
+      flash[:alert] =  "You have finished today's Thirvolution"
     else
       flash[:alert] =  "Please join an activity first"
     end
@@ -115,15 +115,5 @@ class ActivitiesController < ApplicationController
   private
   def activity_params
     params.required(:activity).permit(:title)
-  end
-
-  private
-  def not_participated
-    current_user.activity_id.nil? || current_user.participate_date.nil?
-  end
-
-  private
-  def is_participated
-    !not_participated
   end
 end
