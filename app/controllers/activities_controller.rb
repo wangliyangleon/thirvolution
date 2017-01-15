@@ -76,8 +76,8 @@ class ActivitiesController < ApplicationController
         @finish_day_count = current_user.finish_day_count
         @day_count = participate_day_count(current_user)
         if @day_count >= 30
-          @is_monthly_finished = (current_user.combo_day_count >= 30)
-          if @is_monthly_finished
+          @is_perfectly_finished = (current_user.combo_day_count >= 30)
+          if @is_perfectly_finished
             @current_activity.increment(:finish_count, by = 1)
           end
           @current_activity.transaction do
@@ -87,11 +87,11 @@ class ActivitiesController < ApplicationController
             @current_activity.save
             current_user.save
           end
-          if @is_monthly_finished
-            flash[:success] = "Great! You just finished a perfect round of Thirvolution with #%s!!!" \
+          if @is_perfectly_finished
+            flash[:success] = "Great! You just finished a perfect Thirvolution with #%s!!!" \
                 % [@current_activity.title]
           else
-            flash[:success] = "Great! You finished #%s with %d/%d! You can do better!!!" \
+            flash[:success] = "Great! You finished #%s with %d/%d days! You can do better!!!" \
                 % [@current_activity.title, @finish_day_count, @day_count]
           end
         else
@@ -105,7 +105,7 @@ class ActivitiesController < ApplicationController
         flash[:alert] = "Unknown error :-("
       end
     elsif @finished
-      flash[:alert] =  "You have finished today's Thirvolution"
+      flash[:alert] =  "You have finished today's activity"
     else
       flash[:alert] =  "Please join an activity first"
     end
