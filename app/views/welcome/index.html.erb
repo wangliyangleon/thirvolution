@@ -1,6 +1,6 @@
 <h1>Hello, Day <%= @day_count %></h1>
 <% if @is_participated %>
-  <h2> -- with #<%= @current_activity.title %>!</h2>
+  <h2> -- with #<em><%= link_to @current_activity.title, @current_activity %></em>!</h2>
 <% end %>
 
 <blockquote>
