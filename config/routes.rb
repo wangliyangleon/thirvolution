@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  # get 'sessions/create'
-  # get 'sessions/destroy'
-
   get 'welcome/index'
 
-  # get 'auth/:provider/callback', to: 'sessions#create'
-  # get 'auth/failure', to: redirect('/')
-  # get 'signout', to: 'sessions#destroy', as: 'signout'
+  Rails.application.routes.draw do
+    get "/pages/:page" => "pages#show"
+  end
 
-  # resources :sessions, only: [:create, :destroy]
   resources :activities, only: [:index, :show, :new, :create] do
     patch :participate, on: :member
     post :finish, on: :member

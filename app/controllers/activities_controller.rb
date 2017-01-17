@@ -33,6 +33,7 @@ class ActivitiesController < ApplicationController
   end
 
   def index
+    @not_participated = not_participated(current_user)
     @activities = Activity.all
   end
 

@@ -20,5 +20,6 @@
     <% end %>
   </tbody>
 </table>
-
-<p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
+<% if @not_participated %>
+  <p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
+<% end %>
