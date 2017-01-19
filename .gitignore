@@ -9,7 +9,6 @@
 
 # Ignore the cridential config
 /config/database.yml
-/config/environments/development.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -19,3 +18,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

@@ -35,8 +35,8 @@ Rails.application.configure do
     :port => 587,
     :domain => "localhost:80",
     :authentication => :login,
-    :user_name => "** MY GMAIL ACCOUNT **@gmail.com",
-    :password => "** MY GMAIL PASSWORD **"
+    :user_name => ENV["admin_email_address"],
+    :password => ENV["admin_email_password"]
   }
 
   config.action_mailer.perform_caching = false
