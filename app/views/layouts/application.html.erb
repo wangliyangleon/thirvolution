@@ -44,16 +44,18 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>But, Why?</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">-- here's reasons</li>
-              <li><%= link_to "Story of Matt Cutts", "/pages/mcstory" %></li>
-              <li><%= link_to "Story of Thirvolution", "/pages/thirvstory" %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        <% if @show_story_pad %>
+          <div class="col-lg-3">
+            <div class="well sidebar-nav">
+              <h3>But, Why?</h3>
+              <ul class="nav nav-list">
+                <li class="nav-header">-- here's reasons</li>
+                <li><%= link_to "Story of Matt Cutts", "/pages/mcstory" %></li>
+                <li><%= link_to "Story of Thirvolution", "/pages/thirvstory" %></li>
+              </ul>
+            </div><!--/.well -->
+          </div><!--/span-->
+        <% end %>
       </div><!--/row-->
 
       <footer>

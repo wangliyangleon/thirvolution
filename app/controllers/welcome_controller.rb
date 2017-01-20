@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   def index
+    @show_story_pad = true
     @day_count = 0
     if current_user
       @is_participated = is_participated(current_user)
