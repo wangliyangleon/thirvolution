@@ -41,7 +41,7 @@
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <div class="login_regist_block">
-    <p>Don’t have an account? </p>
+    <p class="help-block">Don’t have an account? </p>
     <%= link_to "Create a Thirvolution account.", new_registration_path(resource_name) %>
   </div>
 <% end -%>
