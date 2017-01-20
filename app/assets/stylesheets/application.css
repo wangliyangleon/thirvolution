@@ -13,3 +13,68 @@
  *= require_tree .
  *= require_self
  */
+
+.login_signup {
+  font-size: 20px;
+  width: 600px;
+  vertical-align: middle;
+}
+
+.login_signup a {
+  text-decoration: underline;
+}
+
+.login_signup input[type=text] {
+  width: 300px;
+}
+
+.login_signup input[type=password] {
+  width: 300px;
+}
+
+.login_signup input[type=email] {
+  width: 300px;
+}
+
+.login_signup input[type=submit] {
+  font-weight: bold;
+}
+
+.field {
+  margin-top: 20px;
+}
+
+.field p {
+  display: inline;
+}
+
+#bootstrap-overrides .login_signup label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.login_forgot_password_block {
+  margin-top: 30px;
+}
+
+.login_forgot_password_block p {
+  display: inline;
+}
+
+.create_account_block {
+  margin-top: 30px;
+}
+
+.login_regist_block {
+  margin-top: 35px;
+}
+
+.login_regist_block p {
+  display: inline;
+}
+
+.google_regist_block {
+  margin-top: 35px;
+}
