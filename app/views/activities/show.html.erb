@@ -3,14 +3,18 @@
   <h1><%= @activity.title %></h1>
 </div>
 
-<p class="lead">There are <strong><%= @activity.participate_count %></strong> users participated this activity</p>
-<% if current_user.activity_id == @activity.id %>
+<div class="show_activity">
+  <p class="lead">There are <strong><%= @activity.participate_count %></strong> users participated this activity</p>
+  <% if current_user.activity_id == @activity.id %>
     <p class="lead">You participated in this activity on <strong><%= current_user.participate_date %></strong></p>
-<% elsif @not_participated %>
-  <%= form_for(@activity, url: participate_activity_path) do |f| %>
-    <%= f.submit "Participate this activity NOW!" %>
+  <% elsif @not_participated %>
+    <%= form_for(@activity, url: participate_activity_path) do |f| %>
+      <%= f.submit "Participate this activity NOW!", :class=>"btn btn-success btn-lg" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              activities_path, :class => 'btn btn-default'  %>
+<div class="back_lucky_block">
+  <%= link_to t('.back', :default => t("helpers.links.back")), activities_path %> |
+  <%= link_to 'I feel lucky!', activities_path %>
+</div>

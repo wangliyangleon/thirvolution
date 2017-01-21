@@ -24,10 +24,10 @@
   <% end %>
 <% elsif user_signed_in? %>
   <p class="lead">How about just pick an <%= link_to 'activity', controller: 'activities' %>?</p>
-  <p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
+  <p class="help-block lead">Or create a <%= link_to 'new one.', new_activity_path %></p>
 <% else %>
-  <p class="lead"><%= link_to 'Join us', new_user_registration_path %> now!
-     Or  <%= link_to 'login', new_user_session_path %> with your account.</p>
+  <p class="lead"><%= link_to 'Join us', new_user_registration_path, :class=>'text_underline' %> now!
+     Or  <%= link_to 'login', new_user_session_path, :class=>'text_underline' %> with your account.</p>
 <% end %>
 
 <%= render partial: "shared/thirv_dashboard" %>

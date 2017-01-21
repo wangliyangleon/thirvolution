@@ -28,7 +28,7 @@
     </li>
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
       <li><p class="help-block">Forgot your password? </p>
-      <%= link_to "Reset it.", new_password_path(resource_name) %></li>
+      <%= link_to "Reset it.", new_password_path(resource_name), :class=>'text_underline' %></li>
     <% end -%>
 </ul>
 <% end %>

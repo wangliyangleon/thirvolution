@@ -20,7 +20,7 @@
   vertical-align: middle;
 }
 
-.login_signup a {
+.text_underline {
   text-decoration: underline;
 }
 
@@ -77,4 +77,16 @@
 
 .back_lucky_block a {
   font-size: 16px;
+}
+
+.show_activity {
+}
+
+.activity_table {
+  font-size: 16px;
+}
+
+.thirv_dashboard {
+  font-size: 18px;
+  margin-top: 25px;
 }

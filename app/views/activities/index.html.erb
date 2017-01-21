@@ -2,7 +2,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
+<table class="table table-striped activity_table">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:title) %></th>
@@ -21,5 +21,5 @@
   </tbody>
 </table>
 <% if @not_participated %>
-  <p class="lead">Or create a <%= link_to 'new one', new_activity_path %></p>
+  <p class="help-block lead">Or create a <%= link_to 'new one.', new_activity_path %></p>
 <% end %>
