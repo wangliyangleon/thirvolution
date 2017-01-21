@@ -1,18 +1,22 @@
 <%- model_class = Activity -%>
 <div class="page-header">
-  <h1>Create an Activity and start Thirvolution TODAY!</h1>
+  <h1>Create an Activity<small> and start Thirvolution TODAY!</small></h1>
 </div>
 
-<%= form_for :activity, url: activities_path do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+<div class="create_activity">
+  <%= form_for :activity, url: activities_path do |f| %>
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
 
-  <p>
-    <%= f.submit "Create and participate this activity!" %>
-  </p>
-<% end %>
+    <p>
+      <%= f.submit "Create and participate this activity!", :class=>"btn btn-success btn-lg" %>
+    </p>
+  <% end %>
+</div>
 
-<%= link_to 'Back', root_path %> |
-<%= link_to 'I feel lucky!', activities_path %>
+<div class="back_lucky_block">
+  <%= link_to 'Back', root_path %> |
+  <%= link_to 'I feel lucky!', activities_path %>
+</div>

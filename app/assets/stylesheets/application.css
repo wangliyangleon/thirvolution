@@ -58,3 +58,23 @@
 .login_regist_block, .google_regist_block {
   margin-top: 35px;
 }
+
+.create_activity input[type=text] {
+  width: 250px;
+}
+
+.create_activity label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.back_lucky_block {
+  margin-top: 30px;
+}
+
+.back_lucky_block a {
+  font-size: 16px;
+}
