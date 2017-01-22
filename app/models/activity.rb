@@ -1,6 +1,8 @@
 class Activity < ApplicationRecord
   has_many :participate_records
   has_many :users, through: :participate_records
+  has_many :daily_finish_records
+  has_many :users, through: :daily_finish_records
 
   before_save :default_values
   def default_values
