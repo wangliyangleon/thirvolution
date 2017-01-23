@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 20170122141904) do
     t.index ["user_id"], name: "index_daily_finish_records_on_user_id", using: :btree
   end
 
-  create_table "participate_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "finish_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
     t.integer  "finish_day_count", null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["activity_id"], name: "index_participate_records_on_activity_id", using: :btree
-    t.index ["user_id"], name: "index_participate_records_on_user_id", using: :btree
+    t.index ["activity_id"], name: "index_finish_records_on_activity_id", using: :btree
+    t.index ["user_id"], name: "index_finish_records_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

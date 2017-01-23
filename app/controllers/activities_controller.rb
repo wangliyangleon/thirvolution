@@ -83,7 +83,7 @@ class ActivitiesController < ApplicationController
           end
           @current_activity.transaction do
             @current_activity.daily_finish_records.create(:user => current_user)
-            @current_activity.participate_records.create(:user => current_user,
+            @current_activity.finish_records.create(:user => current_user,
                 :finish_day_count => current_user.finish_day_count)
             clear_participation(current_user)
             @current_activity.save
