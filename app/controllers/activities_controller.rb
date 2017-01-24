@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
       current_user.participate_date = Time.zone.now.to_date
       begin
         @activity.transaction do
+          @activity.participation_records.create(:user => current_user)
           @activity.save
           current_user.activity_id = @activity.id
           current_user.save
@@ -45,6 +46,7 @@ class ActivitiesController < ApplicationController
       @current_activity.increment(:participate_count, by = 1)
       begin
         @current_activity.transaction do
+          @current_activity.participation_records.create(:user => current_user)
           @current_activity.save
           current_user.save
         end
@@ -81,8 +83,18 @@ class ActivitiesController < ApplicationController
           if @is_perfectly_finished
             @current_activity.increment(:finish_count, by = 1)
           end
+          @current_participation = @current_activity.participation_records
+              .find_by(user: current_user, is_finished: false)
+          if @current_participation
+            @current_participation.finish_day_count = current_user.finish_day_count
+            @current_participation.is_finished = true
+            @current_participation.finish_time = Time.zone.now
+          end
+
           @current_activity.transaction do
+            @current_participation && @current_participation.save
             @current_activity.daily_finish_records.create(:user => current_user)
+            # TODO: Clear finish records, do not need any more
             @current_activity.finish_records.create(:user => current_user,
                 :finish_day_count => current_user.finish_day_count)
             clear_participation(current_user)
