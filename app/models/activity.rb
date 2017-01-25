@@ -1,6 +1,4 @@
 class Activity < ApplicationRecord
-  has_many :finish_records
-  has_many :users, through: :finish_records
   has_many :daily_finish_records
   has_many :users, through: :daily_finish_records
   has_many :participation_records

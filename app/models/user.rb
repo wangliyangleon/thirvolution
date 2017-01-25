@@ -6,8 +6,6 @@ class User < ApplicationRecord
          :confirmable, :lockable, :omniauthable,
          :omniauth_providers => [:google_oauth2]
 
-  has_many :finish_records
-  has_many :activities, through: :finish_records
   has_many :daily_finish_records
   has_many :activities, through: :daily_finish_records
   has_many :participation_records

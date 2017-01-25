@@ -94,9 +94,6 @@ class ActivitiesController < ApplicationController
           @current_activity.transaction do
             @current_participation && @current_participation.save
             @current_activity.daily_finish_records.create(:user => current_user)
-            # TODO: Clear finish records, do not need any more
-            @current_activity.finish_records.create(:user => current_user,
-                :finish_day_count => current_user.finish_day_count)
             clear_participation(current_user)
             @current_activity.save
             current_user.save
