@@ -1,7 +1,37 @@
 <div class="thirv_dashboard">
-  <p><strong><%= @new_activity_count %></strong> Thirvolutists created new activities today!</p>
-  <p><strong><%= @new_participation_count %></strong> Thirvolutists started new Thirvolutions today!</p>
-  <p><strong><%= @daily_finish_count %></strong> daily activities finished today!</p>
-  <p><strong><%= @thirv_finish_count %></strong> Thirvolutions finished today!</p>
-  <p><strong><%= @perfect_finish_count %></strong> PERFECT Thirvolutions finished today!</p>
+  <p class="lead">What's new today?</p>
+  <div class="row">
+    <div class="col-md-5">
+      <% if user_signed_in? && !@is_participated %>
+        <%= button_to new_activity_path,
+            :"data-hover" => 'Create and participate now!',
+            :class => 'btn btn-primary active-tdb-btn',
+            method: :get do %>
+          <span><%= @new_activity_count %> activities created</span>
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-primary">
+          <span><%= @new_activity_count %> activities created</span>
+        </button>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+      <button type="button" class="btn btn-warning"><%= @new_participation_count %> Thirvolutions started</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+      <button type="button" class="btn btn-info"><%= @daily_finish_count %> daily activities finished</button>
+    </div>
+    <div class="col-md-5">
+      <button type="button" class="btn btn-danger"><%= @thirv_finish_count %> Thirvolutions finished</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-success"><%= @perfect_finish_count %> PERFECT Thirvolutions finished!</button>
+    </div>
+  </div>
 </div>

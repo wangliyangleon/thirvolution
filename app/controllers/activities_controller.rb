@@ -11,8 +11,8 @@ class ActivitiesController < ApplicationController
       current_user.participate_date = Time.zone.now.to_date
       begin
         @activity.transaction do
-          @activity.participation_records.create(:user => current_user)
           @activity.save
+          @activity.participation_records.create(:user => current_user)
           current_user.activity_id = @activity.id
           current_user.save
         end
