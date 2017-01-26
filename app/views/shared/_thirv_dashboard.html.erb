@@ -11,12 +11,24 @@
         <% end %>
       <% else %>
         <button type="button" class="btn btn-primary">
-          <span><%= @new_activity_count %>  activit<% if @new_activity_count > 1 %>ies<% else %>y<% end %> created</span>
+          <span><%= @new_activity_count %> activit<% if @new_activity_count > 1 %>ies<% else %>y<% end %> created</span>
         </button>
       <% end %>
     </div>
+
     <div class="col-md-7">
-      <button type="button" class="btn btn-warning"><%= @new_participation_count %> Thirvolution<% if @new_participation_count > 1 %>s<% end %> started</button>
+      <% if user_signed_in? && !@is_participated %>
+        <%= button_to activities_url,
+            :"data-hover" => 'Participate now!',
+            :class => 'btn btn-warning active-tdb-btn',
+            method: :get do %>
+          <span><%= @new_participation_count %> Thirvolution<% if @new_participation_count > 1 %>s<% end %> started<span>
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-warning">
+          <span><%= @new_participation_count %> Thirvolution<% if @new_participation_count > 1 %>s<% end %> started<span>
+        </button>
+      <% end %>
     </div>
   </div>
 
