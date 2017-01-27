@@ -34,7 +34,17 @@
 
   <div class="row">
     <div class="col-md-7">
-      <button type="button" class="btn btn-info"><%= @daily_finish_count %> daily activit<% if @daily_finish_count > 1 %>ies<% else %>y<% end %> finished</button>
+      <% if @is_participated && !@is_finished_today %>
+        <%= button_to finish_activity_path(@current_activity.id),
+            :"data-hover" => 'I finished today\'s Thirvolution ;-)',
+            :class => 'btn btn-info active-tdb-btn' do %>
+          <span><%= @daily_finish_count %> daily activit<% if @daily_finish_count > 1 %>ies<% else %>y<% end %> finished</span>
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-info">
+          <span><%= @daily_finish_count %> daily activit<% if @daily_finish_count > 1 %>ies<% else %>y<% end %> finished</span>
+        </button>
+      <% end %>
     </div>
     <div class="col-md-5">
       <button type="button" class="btn btn-danger"><%= @thirv_finish_count %> Thirvolution<% if @thirv_finish_count > 1 %>s<% end %> finished</button>

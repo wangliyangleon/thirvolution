@@ -20,7 +20,7 @@
   <% if @is_finished_today %>
     <p class="lead">Great! You have finished today's Thirvolution!</p>
   <% else %>
-    <%= button_to('I Finished today\'s Thirvolution ;-)', finish_activity_path(@current_activity.id), :class => 'btn btn-info btn-lg')  %>
+    <%= button_to('I finished today\'s Thirvolution ;-)', finish_activity_path(@current_activity.id), :class => 'btn btn-info btn-lg')  %>
   <% end %>
 <% elsif user_signed_in? %>
   <p class="lead">How about just pick an <%= link_to 'activity', controller: 'activities' %>?</p>
