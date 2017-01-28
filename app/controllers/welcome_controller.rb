@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
         @current_activity = Activity.find(current_user.activity_id)
         @is_finished_today = is_finished_today(current_user)
         @day_count = participate_day_count(current_user)
+        @day_count_from_finish = 30 - @day_count + 1
       end
     end
 

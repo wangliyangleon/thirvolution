@@ -86,6 +86,10 @@
   font-size: 16px;
 }
 
+.pointer-cursor button {
+  cursor: pointer;
+}
+
 .thirv_dashboard {
   font-size: 18px;
   margin-top: 25px;
@@ -105,12 +109,12 @@
   height: 50px;
   font-size: 16px;
   border-radius: 0px;
-  cursor: auto;
   display: inline-block;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   outline: none;
+  cursor: auto;
 }
 
 .thirv_dashboard button span {
@@ -157,10 +161,6 @@
     -ms-transform: translate(150%,0);
     -o-transform: translate(150%,0);
     transform: translate(150%,0);
-}
-
-.thirv_dashboard .active-tdb-btn {
-  cursor: pointer;
 }
 
 .thirv_dashboard .active-tdb-btn:hover span {

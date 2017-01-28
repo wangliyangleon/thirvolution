@@ -1,11 +1,11 @@
-<div class="thirv_dashboard">
+<div class="thirv_dashboard auto-cursor">
   <p class="lead">What's new today?</p>
   <div class="row">
     <div class="col-md-5">
       <% if user_signed_in? && !@is_participated %>
         <%= button_to new_activity_path,
             :"data-hover" => 'Create and participate now!',
-            :class => 'btn btn-primary active-tdb-btn',
+            :class => 'btn btn-primary active-tdb-btn pointer-cursor',
             method: :get do %>
           <span><%= @new_activity_count %> activit<% if @new_activity_count > 1 %>ies<% else %>y<% end %> created</span>
         <% end %>
@@ -20,7 +20,7 @@
       <% if user_signed_in? && !@is_participated %>
         <%= button_to activities_url,
             :"data-hover" => 'Participate now!',
-            :class => 'btn btn-warning active-tdb-btn',
+            :class => 'btn btn-warning active-tdb-btn pointer-cursor',
             method: :get do %>
           <span><%= @new_participation_count %> Thirvolution<% if @new_participation_count > 1 %>s<% end %> started<span>
         <% end %>
@@ -37,7 +37,7 @@
       <% if @is_participated && !@is_finished_today %>
         <%= button_to finish_activity_path(@current_activity.id),
             :"data-hover" => 'I finished today\'s Thirvolution ;-)',
-            :class => 'btn btn-info active-tdb-btn' do %>
+            :class => 'btn btn-info active-tdb-btn pointer-cursor' do %>
           <span><%= @daily_finish_count %> daily activit<% if @daily_finish_count > 1 %>ies<% else %>y<% end %> finished</span>
         <% end %>
       <% else %>
@@ -47,7 +47,18 @@
       <% end %>
     </div>
     <div class="col-md-5">
-      <button type="button" class="btn btn-danger"><%= @thirv_finish_count %> Thirvolution<% if @thirv_finish_count > 1 %>s<% end %> finished</button>
+      <% if @is_participated %>
+        <%= button_to '#',
+            :"data-hover" => @day_count_from_finish.to_s + ' day' +
+                (@day_count_from_finish > 1 ? 's' : '') + ' before accomplishment!',
+            :class => 'btn btn-danger active-tdb-btn' do %>
+          <span><%= @thirv_finish_count %> Thirvolution<% if @thirv_finish_count > 1 %>s<% end %> finished</span>
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-danger">
+          <span><%= @thirv_finish_count %> Thirvolution<% if @thirv_finish_count > 1 %>s<% end %> finished</span>
+        </button>
+      <% end %>
     </div>
   </div>
 
