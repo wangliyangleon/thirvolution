@@ -86,10 +86,6 @@
   font-size: 16px;
 }
 
-.pointer-cursor button {
-  cursor: pointer;
-}
-
 .thirv_dashboard {
   font-size: 18px;
   margin-top: 25px;
@@ -114,7 +110,6 @@
   overflow: hidden;
   text-decoration: none;
   outline: none;
-  cursor: auto;
 }
 
 .thirv_dashboard button span {
@@ -183,4 +178,12 @@
     -moz-transition-delay: .4s;
     -o-transition-delay: .4s;
     transition-delay: .4s;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.auto-cursor {
+  cursor: auto;
 }

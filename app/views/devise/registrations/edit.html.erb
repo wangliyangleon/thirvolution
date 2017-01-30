@@ -1,28 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+<div class="login_signup col-md-2 col-md-offset-3">
+<h1>Update settings</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %> <p class="help-block">(leave blank if you don't want to change it)</b><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <p class="help-block"><%= @minimum_password_length %> characters minimum</p>
     <% end %>
   </div>
 
@@ -32,17 +24,23 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %> <p class="help-block">(to confirm your changes)</p><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+  <ul class="create_account_block list-inline">
+    <ui>
+      <div class="actions">
+        <%= f.submit "Update profile", :class=>'btn btn-success btn-lg' %>
+      </div>
+    </ui>
+  </ul>
+
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? Or just want to create a new one? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<div class="login_regist_block">
+  <p class="help-block">Unhappy? Or just want to create a new one? </p>
+  <%= link_to "Cancel my account.", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class=>'text_underline' %>
+</div>
+</div>
+</div>

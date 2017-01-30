@@ -33,10 +33,20 @@
 </ul>
 <% end %>
 
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <div class="login_regist_block">
+    <p class="help-block">Didn't receive confirmation instructions?</p>
+    <%= link_to "Resend.", new_confirmation_path(resource_name) %><br />
+  </div>
+<% end -%>
+
 <%- if devise_mapping.omniauthable? %>
+  <div class="login_regist_block">
+  <p class="help-block">Do you have a Google account?</p>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Log in with Google", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
+    <%= link_to "Sign in with Google", omniauth_authorize_path(resource_name, provider) %>
+    <% end -%>
+  </div>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
