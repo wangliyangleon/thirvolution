@@ -33,13 +33,6 @@
 </ul>
 <% end %>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <div class="login_regist_block">
-    <p class="help-block">Didn't receive confirmation instructions?</p>
-    <%= link_to "Resend.", new_confirmation_path(resource_name) %><br />
-  </div>
-<% end -%>
-
 <%- if devise_mapping.omniauthable? %>
   <div class="login_regist_block">
   <p class="help-block">Do you have a Google account?</p>
@@ -55,5 +48,13 @@
     <%= link_to "Create a Thirvolution account.", new_registration_path(resource_name) %>
   </div>
 <% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <div class="login_regist_block">
+    <p class="help-block">Didn't receive confirmation instructions?</p>
+    <%= link_to "Resend.", new_confirmation_path(resource_name) %><br />
+  </div>
+<% end -%>
+
 </div>
 </div>

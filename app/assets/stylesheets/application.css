@@ -36,6 +36,10 @@
   margin-top: 20px;
 }
 
+.field .field_with_errors {
+  display: inline-block;
+}
+
 .field p {
   display: inline;
 }
@@ -47,16 +51,12 @@
   font-weight: normal;
 }
 
-.login_forgot_password_block, .create_account_block {
+.login_forgot_password_block, .create_account_block, .login_regist_block, .google_regist_block {
   margin-top: 30px;
 }
 
 .login_forgot_password_block p, .login_regist_block p {
   display: inline;
-}
-
-.login_regist_block, .google_regist_block {
-  margin-top: 35px;
 }
 
 .create_activity input[type=text] {

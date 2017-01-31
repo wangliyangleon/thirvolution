@@ -30,7 +30,8 @@ class User < ApplicationRecord
         uid: access_token.uid,
         username: username,
         email: data["email"],
-        password: Devise.friendly_token[0,20]
+        password: Devise.friendly_token[0,20],
+        nickname: data["name"]
       )
     end
     user
@@ -49,8 +50,21 @@ class User < ApplicationRecord
     :presence => true,
     :uniqueness => {
       :case_sensitive => false
+    },
+    :length => {
+      :maximum => 16
+    }
+
+  validates :nickname,
+    :length => {
+      :maximum => 16
     }
 
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+
+  before_save :default_values
+  def default_values
+    self.nickname ||= self.username
+  end
 
 end

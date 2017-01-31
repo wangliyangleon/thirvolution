@@ -6,10 +6,10 @@
 <blockquote>
   <% if @is_participated %>
     <p>I'm ready to continue my self revolution!</p>
-    <footer><%= current_user.username %>, one of the greatest Thirvolutionists</footer>
+    <footer><%= current_user.nickname %>, one of the greatest Thirvolutionists</footer>
   <% elsif user_signed_in? %>
     <p>So, this is how I start my self revolution!</p>
-    <footer><%= current_user.username %>, one of the most prospective Thirvolutionists</footer>
+    <footer><%= current_user.nickname %>, one of the most prospective Thirvolutionists</footer>
   <% else %>
       <p>I'm ready for my very first step to be better!</p>
       <footer>YOU, pritential Thirvolutionist</footer>

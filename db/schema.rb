@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124135343) do
+ActiveRecord::Schema.define(version: 20170131065452) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                         null: false
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170124135343) do
     t.integer  "combo_day_count",        default: 0,  null: false
     t.date     "participate_date"
     t.date     "last_finish_date"
+    t.string   "nickname",                            null: false
     t.index ["activity_id"], name: "index_users_on_activity_id", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
