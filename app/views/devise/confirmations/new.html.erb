@@ -10,12 +10,12 @@
     <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
   </div>
 
-  <ul class="login_forgot_password_block list-inline">
-    <li>
+  <ul class="create_account_block list-inline">
+    <ui>
       <div class="actions">
         <%= f.submit "Resend confirmation instructions", :class=>'btn btn-success btn-lg' %>
       </div>
-    </li>
+    </ui>
   </ul>
 <% end %>
 
