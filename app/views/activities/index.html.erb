@@ -2,24 +2,35 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped activity_table">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th>HOT</th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @activities.each do |activity| %>
+
+<%= form_tag activities_path, :method => 'get', :id => "activities_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <table class="table table-striped activity_table">
+    <thead>
       <tr>
-        <td><%= link_to activity.title, activity %></td>
-        <td><%= activity.participate_count %> users participated!</td>
-        <td><%=l activity.created_at %></td>
+        <th><%= sortable "title" %></th>
+        <th><%= sortable "participate_count" %></th>
+        <th><%= sortable "created_at" %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @activities.each do |activity| %>
+        <tr>
+          <td><%= link_to activity.title, activity %></td>
+          <td><%= activity.participate_count %></td>
+          <td><%=l activity.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div id="activities"><%= render 'activities' %></div>
+<% end %>
+
+
+
 <% if @not_participated %>
   <p class="help-block lead">Or create a <%= link_to 'new one.', new_activity_path %></p>
 <% end %>

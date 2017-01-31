@@ -56,6 +56,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
-gem 'omniauth-google-oauth2', "~> 0.2.1"
+gem 'omniauth-google-oauth2', '~> 0.2.1'
 
-gem "figaro"
+gem 'figaro'
+
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+gem 'jquery-rails'

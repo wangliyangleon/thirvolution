@@ -10,4 +10,13 @@ class Activity < ApplicationRecord
     self.finish_count ||= 0
     self.finish_day_count ||= 0
   end
+
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+
 end
