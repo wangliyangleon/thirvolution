@@ -30,6 +30,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @show_user_menu = true
     @not_participated = not_participated(current_user)
     @activity = Activity.find(params[:id])
   end
