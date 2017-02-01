@@ -51,6 +51,10 @@
   font-weight: normal;
 }
 
+#bootstrap-overrides .sidebar-nav {
+  margin-top: 50px;
+}
+
 .login_forgot_password_block, .create_account_block, .login_regist_block, .google_regist_block {
   margin-top: 30px;
 }
@@ -230,4 +234,49 @@
 
 .activity-search #activity-search-clear-btn {
   border-radius: 0px 5px 5px 0px;
+}
+
+.user-menu {
+  margin-right: 50px;
+  position: absolute;
+  right: 0px;
+  z-index: 1000;
+}
+
+#sidebar-wrapper {
+    z-index: 100;
+    position: fixed;
+    right: 250px;
+    width: 0;
+    padding: 0px;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+.user-menu-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.user-menu-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.user-menu-nav li a {
+    display: block;
+    text-decoration: none;
 }

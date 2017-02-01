@@ -35,6 +35,7 @@ class ActivitiesController < ApplicationController
   end
 
   def index
+    @show_user_menu = true
     @not_participated = not_participated(current_user)
     @activities = Activity.search(params[:search]).order(sort_column + " " + sort_direction)
         .paginate(:per_page => 10, :page => params[:page])
