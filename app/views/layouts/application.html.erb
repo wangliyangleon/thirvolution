@@ -49,12 +49,13 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <% if @show_user_menu %>
-          <%= render partial: "shared/user_menu" %>
-        <% elsif @show_story_pad %>
+        <% if @show_story_pad %>
           <%= render partial: "shared/story_pad" %>
         <% end %>
       </div><!--/row-->
+      <% if @show_user_menu %>
+        <%= render partial: "shared/user_menu" %>
+      <% end %>
 
       <footer>
         <p style="margin-top: 30px;">&copy; Leon's Work 2017</p>
