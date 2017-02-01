@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require_tree .
 $(function() {
-  $("#activities th a, #activities .pagination a").live("click", function() {
+  $("#activities th a, #activities .pagination a").on("click", 'a', function() {
     $.getScript(this.href);
     return false;
   });
