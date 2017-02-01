@@ -221,6 +221,7 @@
 
 .activity-search input[type=text] {
   height: 30px;
+  width: 200px;
 }
 
 .activity-search #activity-search-btn {

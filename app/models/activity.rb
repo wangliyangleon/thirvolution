@@ -19,4 +19,9 @@ class Activity < ApplicationRecord
     end
   end
 
+  validates :title,
+    :length => {
+      :maximum => 128
+    }
+
 end

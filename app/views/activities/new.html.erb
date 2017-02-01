@@ -7,7 +7,7 @@
   <%= form_for :activity, url: activities_path do |f| %>
     <p>
       <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, placeholder: "Input activity title...", :maxlength=>"128" %>
     </p>
 
     <p>
@@ -17,6 +17,6 @@
 </div>
 
 <div class="back_lucky_block">
-  <%= link_to t('.back', :default => t("helpers.links.back")), activities_path %> | 
+  <%= link_to t('.back', :default => t("helpers.links.back")), activities_path %> |
   <%= link_to 'I feel lucky!', activities_path %>
 </div>

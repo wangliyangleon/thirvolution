@@ -19,8 +19,8 @@ class ActivitiesController < ApplicationController
         end
         flash[:success] = "Cool! Let's start Thirvolution TODAY!!!"
         redirect_to @activity
-      rescue
-        flash[:alert] = "Unknown error :-("
+      rescue Exception => e
+        flash[:alert] = e.message
         redirect_back(fallback_location: root_path)
       end
     else
@@ -53,8 +53,8 @@ class ActivitiesController < ApplicationController
           current_user.save
         end
         flash[:success] = "Cool! Let's start Thirvolution TODAY!!!"
-      rescue
-        flash[:alert] = "Unknown error :-("
+      rescue Exception => e
+        flash[:alert] = e.message
       end
     else
       flash[:alert] =  "You cannot participate multiple activities"
@@ -115,8 +115,8 @@ class ActivitiesController < ApplicationController
           end
           flash[:success] = "Cool! Let's continue tomorrow!!!"
         end
-      rescue
-        flash[:alert] = "Unknown error :-("
+      rescue Exception => e
+        flash[:alert] = e.message
       end
     elsif @finished
       flash[:alert] =  "You have finished today's activity"
