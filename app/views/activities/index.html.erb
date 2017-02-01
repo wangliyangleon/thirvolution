@@ -11,22 +11,28 @@
           <span class="glyphicon glyphicon-remove"></span>
     <% end %>
   </div>
-  <table class="table table-striped activity_table">
+  <table class="table table-striped activity-table">
     <thead>
-      <tr>
-        <th><%= sortable "title" %></th>
-        <th><%= sortable "participate_count" %></th>
-        <th><%= sortable "created_at" %></th>
-      </tr>
     </thead>
     <tbody>
       <% @activities.each do |activity| %>
         <tr>
-          <td><%= link_to activity.title, activity %></td>
-          <td><%= activity.participate_count %></td>
-          <td><%=l activity.created_at %></td>
+          <td title="Participation Count" class="activity-participation-count">
+            <span class="glyphicon glyphicon-flag"></span>
+            <%= activity.participate_count %>
+          </td>
+          <td class="activity-title full-width"><%= link_to activity.title, activity %></td>
+          <td title="Creation Time" class="pull-right activity-creation-time full-width">
+            <span class="glyphicon glyphicon-time"></span>
+            <%= activity_time_format activity.created_at %>
+          </td>
         </tr>
       <% end %>
+      <tr>
+        <td class="activity-sort"><%= sortable "participate_count", "" %></td>
+        <td class="activity-title full-width"></td>
+        <td class="pull-right full-width activity-sort"><%= sortable "created_at", "" %></td>
+      </tr>
     </tbody>
   </table>
   <div id="activities"><%= render 'activities' %></div>

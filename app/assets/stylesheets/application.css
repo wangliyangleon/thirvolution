@@ -82,8 +82,34 @@
 .show_activity {
 }
 
-.activity_table {
+.activity-table {
   font-size: 16px;
+  margin-top: 15px;
+}
+
+.activity-table td {
+  white-space: nowrap;
+}
+
+.activity-table .activity-title {
+  padding-left: 30px;
+}
+
+.activity-table .activity-participation-count {
+  font-size: 14px;
+}
+
+.activity-table .activity-creation-time {
+  color: #999;
+  font-size: 12px;
+}
+
+.activity-table .full-width {
+  width: 100%;
+}
+
+.activity-table .activity-sort {
+  text-align: center;
 }
 
 .thirv_dashboard {
