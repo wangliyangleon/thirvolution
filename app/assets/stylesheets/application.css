@@ -187,3 +187,20 @@
 .auto-cursor {
   cursor: auto;
 }
+
+.activity-search input {
+  display: inline;
+  float: left;
+}
+
+.activity-search input[type=text] {
+  height: 30px;
+}
+
+.activity-search #activity-search-btn {
+  border-radius: 0px;
+}
+
+.activity-search #activity-search-clear-btn {
+  border-radius: 0px 5px 5px 0px;
+}
