@@ -29,16 +29,14 @@
         </tr>
       <% end %>
       <tr>
-        <td class="activity-sort"><%= sortable "participate_count", "" %></td>
+        <td class="activity-sort"><%= sortable "participate_count", "", params[:page] %></td>
         <td class="activity-title full-width"></td>
-        <td class="pull-right full-width activity-sort"><%= sortable "created_at", "" %></td>
+        <td class="pull-right full-width activity-sort"><%= sortable "created_at", "", params[:page] %></td>
       </tr>
     </tbody>
   </table>
   <div id="activities"><%= render 'activities' %></div>
 <% end %>
-
-
 
 <% if @not_participated %>
   <p class="help-block lead">Or create a <%= link_to 'new one.', new_activity_path %></p>
