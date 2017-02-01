@@ -1,19 +1,22 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
 
+.thirv-top-navbar {
+  z-index: 1000;
+}
 .login_signup {
   font-size: 20px;
   width: 600px;
@@ -143,71 +146,71 @@
 }
 
 .thirv_dashboard button span {
-    -webkit-transition: 0.6s;
-    -moz-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-    -webkit-transition-delay: 0.2s;
-    -moz-transition-delay: 0.2s;
-    -o-transition-delay: 0.2s;
-    transition-delay: 0.2s;
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transition-delay: 0.2s;
+  -moz-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .thirv_dashboard button:before,
 .thirv_dashboard button:after {
-    content: '';
-    position: absolute;
-    top: 0.67em;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    opacity: 0;
-    -webkit-transition: .4s,opacity .6s;
-    -moz-transition: .4s,opacity .6s;
-    -o-transition: .4s,opacity .6s;
-    transition: .4s,opacity .6s;
+  content: '';
+  position: absolute;
+  top: 0.67em;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: .4s,opacity .6s;
+  -moz-transition: .4s,opacity .6s;
+  -o-transition: .4s,opacity .6s;
+  transition: .4s,opacity .6s;
 }
 
 /* :before */
 .thirv_dashboard button:before {
-    content: attr(data-hover);
-    -webkit-transform: translate(-150%,0);
-    -moz-transform: translate(-150%,0);
-    -ms-transform: translate(-150%,0);
-    -o-transform: translate(-150%,0);
-    transform: translate(-150%,0);
+  content: attr(data-hover);
+  -webkit-transform: translate(-150%,0);
+  -moz-transform: translate(-150%,0);
+  -ms-transform: translate(-150%,0);
+  -o-transform: translate(-150%,0);
+  transform: translate(-150%,0);
 }
 
 /* :after */
 .thirv_dashboard button:after {
-    content: attr(data-active);
-    -webkit-transform: translate(150%,0);
-    -moz-transform: translate(150%,0);
-    -ms-transform: translate(150%,0);
-    -o-transform: translate(150%,0);
-    transform: translate(150%,0);
+  content: attr(data-active);
+  -webkit-transform: translate(150%,0);
+  -moz-transform: translate(150%,0);
+  -ms-transform: translate(150%,0);
+  -o-transform: translate(150%,0);
+  transform: translate(150%,0);
 }
 
 .thirv_dashboard .active-tdb-btn:hover span {
-    opacity: 0;
-    -webkit-transform: scale(0.3);
-    -moz-transform: scale(0.3);
-    -ms-transform: scale(0.3);
-    -o-transform: scale(0.3);
-    transform: scale(0.3);
+  opacity: 0;
+  -webkit-transform: scale(0.3);
+  -moz-transform: scale(0.3);
+  -ms-transform: scale(0.3);
+  -o-transform: scale(0.3);
+  transform: scale(0.3);
 }
 
 .thirv_dashboard .active-tdb-btn:hover:before {
-    opacity: 1;
-    -webkit-transform: translate(0,0);
-    -moz-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    -o-transform: translate(0,0);
-    transform: translate(0,0);
-    -webkit-transition-delay: .4s;
-    -moz-transition-delay: .4s;
-    -o-transition-delay: .4s;
-    transition-delay: .4s;
+  opacity: 1;
+  -webkit-transform: translate(0,0);
+  -moz-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  transform: translate(0,0);
+  -webkit-transition-delay: .4s;
+  -moz-transition-delay: .4s;
+  -o-transition-delay: .4s;
+  transition-delay: .4s;
 }
 
 .pointer-cursor {
@@ -240,43 +243,95 @@
   margin-right: 50px;
   position: absolute;
   right: 0px;
-  z-index: 1000;
 }
 
 #sidebar-wrapper {
-    margin-top: 120px;
-    top: 0;
-    z-index: 100;
-    position: fixed;
-    right: 250px;
-    width: 0;
-    padding: 0px;
-    height: 100%;
-    margin-right: -250px;
-    overflow-y: auto;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    background: #f9f9f9;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  right: 250px;
+  width: 250px;
+  padding: 0px;
+  height: 100%;
+  margin-right: -250px;
+  overflow-y: auto;
+  background: #EDEFF0;
+
+  -webkit-transition-property: -webkit-transform,width;
+  transition-property: transform,width;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  -webkit-transform: translateX(250px);
+  transform: translateX(250px);
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+  box-shadow: 0 0 6px rgba(0,0,0,.4);
+  -webkit-transform: translateX(0);
+  transform: translateX(0)
 }
 
 .user-menu-nav {
-    width: 250px;
-    padding: 0;
-    list-style: none;
+  margin-top: 75px;
+  width: 250px;
+  padding: 0;
+  list-style: none;
 }
 
 .user-menu-nav li {
-    text-indent: 20px;
-    line-height: 40px;
+  text-indent: 20px;
+  line-height: 40px;
 }
 
 .user-menu-nav li a {
-    display: block;
-    text-decoration: none;
+  display: block;
+  text-decoration: none;
+}
+
+.user-menu-nav li a:hover {
+  text-decoration: none;
+  background: rgba(255,255,255,0.2);
+}
+
+element.style {
+}
+
+hr {
+  background: #D6DADC;
+  border: 0;
+  color: #D6DADC;
+  height: 1px;
+  margin: 9pt 0;
+  width: 100%;
+}
+
+.menu-header {
+  padding: 0px 6px 0px 9px;
+}
+
+.menu-header .menu-header-title-holder {
+  width: 100%;
+}
+
+.menu-header .menu-header-title {
+  text-align: center;
+  font-size: 16px;
+}
+
+.menu-header a {
+  color: #999;
+}
+
+.menu-header a:hover {
+  color: #000;
+}
+
+.menu-header a span {
+  position: absolute;
+  display: inline;
+  top: 77px;
+  right: 5px;
 }

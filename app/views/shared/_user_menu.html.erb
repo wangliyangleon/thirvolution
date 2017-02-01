@@ -1,6 +1,11 @@
 <div id="sidebar-wrapper">
   <!-- Sidebar -->
   <div class="user-menu-nav">
+    <div class="menu-header">
+        <div class="menu-header-title-holder"><h3 class="menu-header-title">Menu</h3></div>
+        <%= link_to('#', :id => "menu-close") do %><span class="glyphicon glyphicon-remove"></span><% end %>
+      <hr>
+    </div>
     <ul class="nav nav-list">
       <li>
         <a href="#">Dashboard</a>
@@ -26,3 +31,10 @@
     </ul>
   </div>
 </div>
+
+<script>
+$("#menu-close").click(function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
+</script>
