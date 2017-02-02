@@ -282,8 +282,10 @@
 }
 
 .user-menu-nav li {
-  text-indent: 20px;
-  line-height: 40px;
+  text-indent: 10px;
+  line-height: 20px;
+  width: 220px;
+  margin-left: 15px;
 }
 
 .user-menu-nav li a {
@@ -293,7 +295,7 @@
 
 .user-menu-nav li a:hover {
   text-decoration: none;
-  background: rgba(255,255,255,0.2);
+  background: #cccccc;
 }
 
 element.style {
