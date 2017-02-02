@@ -308,7 +308,7 @@ hr {
   width: 100%;
 }
 
-.menu-header {
+.menu-header, .menu-divider {
   padding: 0px 6px 0px 9px;
 }
 
@@ -334,4 +334,8 @@ hr {
   display: inline;
   top: 77px;
   right: 10px;
+}
+
+.menu-divider .menu-divider-title {
+  font-size: 14px;
 }
