@@ -316,7 +316,7 @@ body {
   padding: 6px 12px 6px 0px;
 }
 
-.user-menu-nav li a span {
+.user-menu-nav .menu-item-icon {
   display: inline;
   font-size: 16px;
   padding: 0px 6px 0px 0px;
@@ -360,12 +360,11 @@ hr {
   color: #000;
 }
 
-.menu-header a span {
+.menu-header .menu-close-button {
   position: absolute;
   display: inline;
   top: 77px;
   right: 10px;
-  top: 3px;
 }
 
 .menu-divider .menu-divider-title {
@@ -376,12 +375,14 @@ hr {
   margin-left: 30px;
   width: 85%;
 }
+
 .nav-activity-list p {
   margin: 0px;
 }
 
 .nav-activity-list .nav-activity-time {
   color: #8c8c8c;
+  font-size: 12px;
 }
 
 .nav-activity-list hr {

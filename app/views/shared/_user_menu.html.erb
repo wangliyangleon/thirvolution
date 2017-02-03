@@ -3,14 +3,14 @@
   <div class="user-menu-nav">
     <div class="menu-header">
         <div class="menu-header-title-holder"><h3 class="menu-header-title">Menu</h3></div>
-        <%= link_to('#', :id => "menu-close") do %><span class="glyphicon glyphicon-remove"></span><% end %>
+        <%= link_to('#', :id => "menu-close") do %><span class="glyphicon glyphicon-remove menu-close-button"></span><% end %>
       <hr>
     </div>
     <ul class="nav nav-list">
       <% if @is_participated %>
         <li>
-          <%= link_to(@current_activity) do %><!--
-          --><span class="glyphicon glyphicon-plane"></span>&nbsp;Ongoing Thirvolution
+          <%= link_to(@current_activity) do %>
+            <span class="glyphicon glyphicon-plane menu-item-icon"></span>&nbsp;Ongoing Thirvolution
           <% end %>
         </li>
       <% else %>
@@ -21,7 +21,7 @@
     </ul>
     <div class="menu-divider">
       <hr>
-      <h3 class="menu-divider-title"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Activity</h3>
+      <h3 class="menu-divider-title"><span class="glyphicon glyphicon-list-alt menu-item-icon"></span>&nbsp;Activity</h3>
     </div>
     <div class="nav-activity-list">
       <p class="nav-activity-content">This is just an example.</p>
