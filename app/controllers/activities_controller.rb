@@ -31,13 +31,27 @@ class ActivitiesController < ApplicationController
 
   def show
     @show_user_menu = true
-    @not_participated = not_participated(current_user)
+    @is_participated = is_participated(current_user)
     @activity = Activity.find(params[:id])
+    @day_count = 0
+    if @is_participated
+      @current_activity = Activity.find(current_user.activity_id)
+      @is_finished_today = is_finished_today(current_user)
+      @day_count = participate_day_count(current_user)
+      @day_count_from_finish = 30 - @day_count + 1
+    end
   end
 
   def index
     @show_user_menu = true
-    @not_participated = not_participated(current_user)
+    @is_participated = is_participated(current_user)
+    @day_count = 0
+    if @is_participated
+      @current_activity = Activity.find(current_user.activity_id)
+      @is_finished_today = is_finished_today(current_user)
+      @day_count = participate_day_count(current_user)
+      @day_count_from_finish = 30 - @day_count + 1
+    end
     @activities = Activity.search(params[:search]).order(sort_column + " " + sort_direction)
         .paginate(:per_page => 10, :page => params[:page])
   end

@@ -7,7 +7,7 @@
   <p class="lead">There are <strong><%= @activity.participate_count %></strong> users participated this activity</p>
   <% if current_user.activity_id == @activity.id %>
     <p class="lead">You participated in this activity on <strong><%= current_user.participate_date %></strong></p>
-  <% elsif @not_participated %>
+  <% elsif @is_participated %>
     <%= form_for(@activity, url: participate_activity_path) do |f| %>
       <%= f.submit "Participate this activity NOW!", :class=>"btn btn-success btn-lg" %>
     <% end %>

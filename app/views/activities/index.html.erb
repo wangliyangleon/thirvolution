@@ -38,6 +38,6 @@
   <div id="activities"><%= render 'activities' %></div>
 <% end %>
 
-<% if @not_participated %>
+<% if !@is_participated %>
   <p class="help-block lead">Or create a <%= link_to 'new one.', new_activity_path %></p>
 <% end %>
