@@ -390,3 +390,7 @@ hr {
 .nav-activity-list hr {
   margin: 3pt 0;
 }
+
+.nav-activity-list a {
+  color: #000;
+}

@@ -40,6 +40,8 @@ class ActivitiesController < ApplicationController
       @day_count = participate_day_count(current_user)
       @day_count_from_finish = 30 - @day_count + 1
     end
+
+    @history_activities = get_history_activities(current_user)
   end
 
   def index
@@ -54,6 +56,7 @@ class ActivitiesController < ApplicationController
     end
     @activities = Activity.search(params[:search]).order(sort_column + " " + sort_direction)
         .paginate(:per_page => 10, :page => params[:page])
+    @history_activities = get_history_activities(current_user)
   end
 
   def participate

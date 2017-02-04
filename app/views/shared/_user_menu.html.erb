@@ -24,14 +24,13 @@
       <h3 class="menu-divider-title"><span class="glyphicon glyphicon-list-alt menu-item-icon"></span>&nbsp;Activity</h3>
     </div>
     <div class="nav-activity-list">
-      <p class="nav-activity-content">This is just an example.</p>
-      <p class="nav-activity-time">yesterday at 14:52</p>
-      <hr>
-      <p class="nav-activity-content">Means nothing, yea.</p>
-      <p class="nav-activity-time">1 Feb at 21:42</p>
-      <hr>
-      <p class="nav-activity-content">Let's just try to make this line super long.</p>
-      <p class="nav-activity-time">21 Nov 2016 at 11:12</p>
+      <% @history_activities.each do |history_activity| %>
+        <%= link_to(history_activity.item) do %>
+        <p class="nav-activity-content"><%= history_activity.message %></p>
+        <% end %>
+        <p class="nav-activity-time"><%= history_time_format(history_activity.time) %></p>
+        <hr>
+      <% end %>
     </div>
   </div>
 </div>

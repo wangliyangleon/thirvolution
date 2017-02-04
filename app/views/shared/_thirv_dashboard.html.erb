@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-5">
       <% if @is_participated %>
-        <%= button_to '#',
+        <%= button_to '', :method => 'get',
             :"data-hover" => @day_count_from_finish.to_s + ' day' +
                 (@day_count_from_finish > 1 ? 's' : '') + ' before accomplishment!',
             :class => 'btn btn-danger active-tdb-btn auto-cursor' do %>
