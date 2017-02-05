@@ -394,3 +394,7 @@ hr {
 .nav-activity-list a {
   color: #000;
 }
+
+.nav-activity-list .nav-activity-content {
+  width: 90%;
+}

@@ -24,7 +24,7 @@
       <h3 class="menu-divider-title"><span class="glyphicon glyphicon-list-alt menu-item-icon"></span>&nbsp;Activity</h3>
     </div>
     <div class="nav-activity-list">
-      <% @history_activities.each do |history_activity| %>
+      <% @history_activities_to_show.each do |history_activity| %>
         <%= link_to(history_activity.item) do %>
         <p class="nav-activity-content"><%= history_activity.message %></p>
         <% end %>
