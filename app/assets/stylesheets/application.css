@@ -269,11 +269,11 @@ body {
   position: absolute;
   top: 0;
   bottom: 0px;
-  right: 250px;
-  width: 250px;
+  right: 266px;
+  width: 266px;
   padding: 0px;
   height: 100%;
-  margin-right: -250px;
+  margin-right: -266px;
   overflow-y: auto;
   background: #EDEFF0;
 
@@ -283,8 +283,8 @@ body {
   transition-duration: .3s;
   -webkit-transition-timing-function: ease-in;
   transition-timing-function: ease-in;
-  -webkit-transform: translateX(250px);
-  transform: translateX(250px);
+  -webkit-transform: translateX(266px);
+  transform: translateX(266px);
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -362,10 +362,13 @@ hr {
   color: #000;
 }
 
-.menu-header .menu-close-button {
+.menu-header .menu-close-button, .menu-back-button {
   position: absolute;
   display: inline;
   top: 77px;
+}
+
+.menu-header .menu-close-button {
   right: 10px;
 }
 
@@ -395,6 +398,8 @@ hr {
   color: #000;
 }
 
-.nav-activity-list .nav-activity-content {
-  width: 90%;
+.nav-activity-list .nav-activity-view-all {
+  color: #8c8c8c;
+  margin-top: 15px;
+  position: absolute;
 }

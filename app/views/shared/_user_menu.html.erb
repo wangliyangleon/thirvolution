@@ -1,36 +1,69 @@
 <div id="sidebar-wrapper">
   <!-- Sidebar -->
   <div class="user-menu-nav">
-    <div class="menu-header">
-        <div class="menu-header-title-holder"><h3 class="menu-header-title">Menu</h3></div>
-        <%= link_to('#', :id => "menu-close") do %><span class="glyphicon glyphicon-remove menu-close-button"></span><% end %>
-      <hr>
-    </div>
-    <ul class="nav nav-list">
-      <% if @is_participated %>
-        <li>
-          <%= link_to(@current_activity) do %>
-            <span class="glyphicon glyphicon-plane menu-item-icon"></span>&nbsp;Ongoing Thirvolution
-          <% end %>
-        </li>
-      <% else %>
-        <li>
-          <a href="#">I feel lucky!</a>
-        </li>
-      <% end %>
-    </ul>
-    <div class="menu-divider">
-      <hr>
-      <h3 class="menu-divider-title"><span class="glyphicon glyphicon-list-alt menu-item-icon"></span>&nbsp;Activity</h3>
-    </div>
-    <div class="nav-activity-list">
-      <% @history_activities_to_show.each do |history_activity| %>
-        <%= link_to(history_activity.item) do %>
-        <p class="nav-activity-content"><%= history_activity.message %></p>
-        <% end %>
-        <p class="nav-activity-time"><%= history_time_format(history_activity.time) %></p>
+      <div id="user-menu-index">
+      <div class="menu-header">
+          <div class="menu-header-title-holder"><h3 class="menu-header-title">Menu</h3></div>
+          <%= link_to('#', :id => "menu-close") do %><span class="glyphicon glyphicon-remove menu-close-button"></span><% end %>
         <hr>
-      <% end %>
+      </div>
+      <ul class="nav nav-list">
+        <% if @is_participated %>
+          <li>
+            <%= link_to(@current_activity) do %>
+              <span class="glyphicon glyphicon-plane menu-item-icon"></span>&nbsp;Ongoing Thirvolution
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <a href="#">I feel lucky!</a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="menu-divider">
+        <hr>
+        <h3 class="menu-divider-title"><span class="glyphicon glyphicon-list-alt menu-item-icon"></span>&nbsp;Activity</h3>
+      </div>
+      <div class="nav-activity-list">
+        <% @history_activities_to_show.each do |history_activity| %>
+          <%= link_to(history_activity.item) do %>
+          <p class="nav-activity-content"><%= history_activity.message %></p>
+          <% end %>
+          <p class="nav-activity-time"><%= history_time_format(history_activity.time) %></p>
+          <hr>
+        <% end %>
+        <% if @is_show_all_link %>
+          <%= link_to("Show all activity...", "#", :class => "nav-activity-view-all", :id => "view-all-activities-link") %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="user-menu-all-activities" class="hidden">
+      <div class="menu-header">
+          <div class="menu-header-title-holder"><h3 class="menu-header-title">Activity</h3></div>
+          <%= link_to('#', :id => "menu-close") do %><span class="glyphicon glyphicon-remove menu-close-button"></span><% end %>
+          <%= link_to('#', :id => "menu-activity-back") do %><span class="glyphicon glyphicon-chevron-left menu-back-button"></span><% end %>
+        <hr>
+      </div>
+      <div class="nav-activity-list">
+        <% @history_activities.each do |history_activity| %>
+          <%= link_to(history_activity.item) do %>
+          <p class="nav-activity-content"><%= history_activity.message %></p>
+          <% end %>
+          <p class="nav-activity-time"><%= history_time_format(history_activity.time) %></p>
+          <hr>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- Menu Toggle Script -->
+<script>
+$("#view-all-activities-link").add("#menu-activity-back").click(function(e) {
+  e.preventDefault();
+  $("#user-menu-index").toggleClass('hidden');
+  $("#user-menu-all-activities").toggleClass('hidden');
+  $("#sidebar-wrapper").scrollTop(0);
+});
+</script>
