@@ -1,0 +1,9 @@
+<%= button_to 'I feel lucky!', @lucky_activity, :class => "btn btn-info", :method => "get",
+    :"data-toggle" => "tooltip", :"data-placement" => "right",
+    :title => "Go to an acivity randomly. Surprise!!!" %>
+
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

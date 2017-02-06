@@ -3,6 +3,7 @@ class ActivitiesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def new
+    @lucky_activity = get_lucky_activity(10, 10)
   end
 
   def create
@@ -32,6 +33,7 @@ class ActivitiesController < ApplicationController
   def show
     @show_user_menu = true
     fetch_current_activity_and_participation_data()
+    @lucky_activity = get_lucky_activity(10, 10)
     @activity = Activity.find(params[:id])
     fetch_history_activities(10)
   end
@@ -39,6 +41,7 @@ class ActivitiesController < ApplicationController
   def index
     @show_user_menu = true
     fetch_current_activity_and_participation_data()
+    @lucky_activity = get_lucky_activity(10, 10)
     @activities = Activity.search(params[:search]).order(sort_column + " " + sort_direction)
         .paginate(:per_page => 10, :page => params[:page])
     fetch_history_activities(10)
@@ -158,6 +161,12 @@ class ActivitiesController < ApplicationController
     @history_activities = get_history_activities(current_user)
     @is_show_all_link = @history_activities.count > limit
     @history_activities_to_show = @history_activities[0...limit]
+  end
+
+  def get_lucky_activity(new_candidate_number, hot_candidate_number)
+    activity_candidates_new = Activity.order('created_at DESC').limit(new_candidate_number).to_a
+    activity_candidates_hot = Activity.order('participate_count DESC').limit(hot_candidate_number).to_a
+    activity_candidates_new.concat(activity_candidates_hot).shuffle[0]
   end
 
 
