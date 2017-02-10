@@ -18,4 +18,8 @@ module PagesHelper
       date_time.strftime("%-d %b %Y at %H:%M")
     end
   end
+
+  def comment_time_format(date_time)
+    history_time_format(date_time)
+  end
 end

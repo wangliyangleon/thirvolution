@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :activities, only: [:index, :show, :new, :create] do
     patch :participate, on: :member
     post :finish, on: :member
+    post :comment, on: :member
   end
+
   resources :welcome, only: [:index]
 
   root 'welcome#index'

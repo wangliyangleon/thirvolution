@@ -36,6 +36,8 @@ class ActivitiesController < ApplicationController
     @lucky_activity = get_lucky_activity(10, 10)
     @activity = Activity.find(params[:id])
     fetch_history_activities(10)
+    @commentable = commentable(@activity)
+    @activity_comments = @activity.activity_comments
   end
 
   def index
@@ -133,6 +135,17 @@ class ActivitiesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def comment
+    @current_activity = Activity.find(params[:id])
+    if commentable(@current_activity)
+      @current_activity.activity_comments.create(:user => current_user,
+          :content => format_comment(params[:activity_comment][:content]))
+    else
+      flash[:alert] =  "You can only comment on the activities you used to participate"
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   private
   def activity_params
     params.required(:activity).permit(:title)
@@ -169,5 +182,12 @@ class ActivitiesController < ApplicationController
     activity_candidates_new.concat(activity_candidates_hot).shuffle[0]
   end
 
+  def format_comment(comment)
+    comment.gsub(/(?:\n\r?|\r\n?)/, '<br/>')
+  end
+
+  def commentable(activity)
+    current_user.participation_records.find_by(activity: activity) != nil
+  end
 
 end

@@ -403,3 +403,43 @@ hr {
   margin-top: 15px;
   position: absolute;
 }
+
+.activity-comments h4 {
+  margin-top: 25px;
+  margin-bottom: 1px;
+}
+
+.activity-comments .comment-content p {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.activity-comments .comment-author, .comment-time {
+  color: #999;
+  float: right;
+  margin-right: 20px;
+  font-size: 12px;
+}
+
+.activity-comments .comment-author {
+  margin-bottom: 0px;
+}
+
+.activity-comments .comment-time {
+  margin-bottom: 8px;
+}
+
+.post-comment {
+  margin-top: 25px;
+}
+
+.post-comment label {
+  font-size: 14px;
+}
+
+.post-comment textarea {
+  font-size: 14px;
+  word-wrap: break-word;
+  width: 500px;
+  min-height: 120px;
+}

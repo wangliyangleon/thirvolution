@@ -15,12 +15,26 @@
 </div>
 
 <div class="activity-comments">
-  <p class="activity-content">I'm a comment</p>
-  <p class="activity-author">user</p>
-  <p class="activity-time">2017-01-01 12:34</p>
+  <h4>Comments</h4>
   <hr>
+  <% @activity_comments.each do |comment| %>
+    <div class="comment-content"><%= simple_format(comment.content) %></div>
+    <p class="comment-author"><%= comment.user.nickname %></p><br/>
+    <p class="comment-time"><%= comment_time_format(comment.created_at) %></p>
+    <hr>
+  <% end %>
 </div>
+<% if @commentable %>
+<div class="post-comment">
+  <%= form_for :activity_comment, url: comment_activity_path do |f| %>
+    <p>
+      <%= f.label :content, "Post a Comment" %><br />
+      <%= f.text_area :content, placeholder: "Input comment..." %>
+    </p>
 
-<div class="back_lucky_block">
-  <%= render 'footer_menu' %>
+    <p>
+      <%= f.submit "Post", :class=>"btn btn-success" %>
+    </p>
+  <% end %>
 </div>
+<% end %>
