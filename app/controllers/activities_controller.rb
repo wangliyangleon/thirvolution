@@ -139,7 +139,7 @@ class ActivitiesController < ApplicationController
     @current_activity = Activity.find(params[:id])
     if commentable(@current_activity)
       @current_activity.activity_comments.create(:user => current_user,
-          :content => format_comment(params[:activity_comment][:content]))
+          :content => params[:activity_comment][:content])
     else
       flash[:alert] =  "You can only comment on the activities you used to participate"
     end
@@ -180,10 +180,6 @@ class ActivitiesController < ApplicationController
     activity_candidates_new = Activity.order('created_at DESC').limit(new_candidate_number).to_a
     activity_candidates_hot = Activity.order('participate_count DESC').limit(hot_candidate_number).to_a
     activity_candidates_new.concat(activity_candidates_hot).shuffle[0]
-  end
-
-  def format_comment(comment)
-    comment.gsub(/(?:\n\r?|\r\n?)/, '<br/>')
   end
 
   def commentable(activity)
