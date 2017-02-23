@@ -52,6 +52,19 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {:host => "thirvolution.com" }
+  config.action_mailer.delivery_method =:smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => "thirvolution.com",
+    :authentication => :login,
+    :user_name => ENV["admin_email_address"],
+    :password => ENV["admin_email_password"]
+  }
+
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "Thirvolution_#{Rails.env}"
