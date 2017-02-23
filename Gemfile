@@ -63,4 +63,12 @@ gem 'figaro'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 
-gem 'unicorn'
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+
+# Add this if you're using rbenv
+# gem 'capistrano-rbenv', '~> 2.1'
+
+# Add this if you're using rvm
+gem 'capistrano-rvm'
